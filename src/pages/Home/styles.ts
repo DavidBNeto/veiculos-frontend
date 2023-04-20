@@ -20,6 +20,7 @@ export const Content = styled.div`
   gap: 0.5rem;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `
 
 export const FilesWrapper = styled.div`
@@ -28,6 +29,10 @@ export const FilesWrapper = styled.div`
   flex-direction: column;
   padding-right: 0.5rem;
   overflow: auto;
+`
+
+export const FilesRow = styled(FilesWrapper)`
+  flex-direction: row;
 `
 
 export const HeaderTitle = styled(Typography)`

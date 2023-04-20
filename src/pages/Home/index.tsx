@@ -7,6 +7,7 @@ import Button from "../../components/Button"
 import {
   Container,
   Content,
+  FilesRow,
   FilesWrapper,
   HeaderTitle,
   SelectedFiles,
@@ -14,6 +15,7 @@ import {
   SubTitle,
 } from "./styles"
 import GlobalStyle from "../../styles/styles"
+import Dropdown from "../../components/Dropdown"
 
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
@@ -80,12 +82,14 @@ const Home = () => {
                   <FilesWrapper>
                     {uploadedFiles.map((file, index) => {
                       return (
-                        <FileLoading
-                          key={file.name + file.size + file.type}
-                          fileName={file.name}
-                          status="downloaded"
-                          handleDeleteClick={() => handleDeleteClick(index)}
-                        />
+                        <FilesRow key={file.name + file.size + file.type}>
+                          <FileLoading
+                            fileName={file.name}
+                            status="downloaded"
+                            handleDeleteClick={() => handleDeleteClick(index)}
+                          />
+                          <Dropdown />
+                        </FilesRow>
                       )
                     })}
                   </FilesWrapper>
