@@ -15,7 +15,7 @@ import {
   SubTitle,
 } from "./styles"
 import GlobalStyle from "../../styles/styles"
-import Dropdown from "../../components/Dropdown"
+import Dropdown, { CarManufacturer } from "../../components/Dropdown"
 
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
@@ -55,6 +55,16 @@ const Home = () => {
     setUploadedFiles(newUploadedFiles)
   }
 
+  const checkCarManufacturer = (fileName: string): CarManufacturer | "" => {
+    const carManufacturers: [CarManufacturer, CarManufacturer] = [
+      CarManufacturer.chev,
+      CarManufacturer.jeep,
+    ]
+    const file = fileName.toLowerCase()
+    const manufacturer = carManufacturers.find((item) => file.includes(item))
+    return manufacturer || ""
+  }
+
   return (
     <Container>
       <Content>
@@ -88,7 +98,9 @@ const Home = () => {
                             status="downloaded"
                             handleDeleteClick={() => handleDeleteClick(index)}
                           />
-                          <Dropdown />
+                          <Dropdown
+                            defaultValue={checkCarManufacturer(file.name)}
+                          />
                         </FilesRow>
                       )
                     })}

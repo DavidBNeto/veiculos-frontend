@@ -2,8 +2,20 @@ import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core"
 import React from "react"
 import DropdownArea from "./styles"
 
-export default function Dropdown(): JSX.Element {
-  const [carManufacturer, setCarManufacturer] = React.useState("")
+export enum CarManufacturer {
+  chev = "chev",
+  jeep = "jeep",
+  others = "others",
+}
+
+interface DropdownProps {
+  defaultValue?: CarManufacturer | ""
+}
+
+export default function Dropdown({
+  defaultValue = "",
+}: DropdownProps): JSX.Element {
+  const [carManufacturer, setCarManufacturer] = React.useState(defaultValue)
 
   return (
     <DropdownArea>
@@ -14,7 +26,9 @@ export default function Dropdown(): JSX.Element {
           id="demo-select-small"
           value={carManufacturer}
           label="Selecone a montadora"
-          onChange={(event) => setCarManufacturer(event.target.value as string)}
+          onChange={(event) =>
+            setCarManufacturer(event.target.value as CarManufacturer | "")
+          }
         >
           <MenuItem value="chev">Chevrolet (GM) </MenuItem>
           <MenuItem value="jeep">Jeep</MenuItem>
