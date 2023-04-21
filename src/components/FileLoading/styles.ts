@@ -78,4 +78,7 @@ export const Title = styled(Typography)`
   font-size: 18.55px !important;
   line-height: 27.8px !important;
   color: ${text};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `

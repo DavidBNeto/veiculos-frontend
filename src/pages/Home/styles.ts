@@ -28,7 +28,6 @@ export const FilesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 0.5rem;
-  overflow: auto;
 `
 
 export const FilesRow = styled(FilesWrapper)`
@@ -44,9 +43,10 @@ export const HeaderTitle = styled(Typography)`
 export const SelectedFiles = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 60px 60px 60px;
+  height: 100%;
+  margin: 10px 60px 10px 60px;
   overflow-y: auto;
-  max-height: 30%;
+  max-height: 35%;
 `
 
 export const SubTitle = styled(Typography)`
