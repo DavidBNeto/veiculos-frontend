@@ -17,9 +17,10 @@
     }
   },
   "extraction": {
-    "title": "Fazendo a extração de dados..",
+    "title": "Fazendo a extração de dados...",
     "subtitle": "Isso pode levar de 2 a 5 minutos",
-    "success": "Extração concluída!"
+    "success": "Extração concluída!",
+    "redirect": "Visualizar conteúdo"
   },
   "notFound": {
     "title": "404",

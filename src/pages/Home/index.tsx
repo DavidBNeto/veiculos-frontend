@@ -14,10 +14,11 @@ import {
   SendButton,
 } from "./styles"
 import GlobalStyle from "../../styles/styles"
+import ProcessingPage from "../ProcessingPage"
 
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
-  const [processingPage, setProcessingPage] = useState(false)
+  const [processingPage, setProcessingPage] = useState(true)
   const [startUpload, setStartUpload] = useState(false)
   const [uploadComplete, setUploadComplete] = useState(true)
   const { t } = useTranslation()
@@ -52,19 +53,28 @@ const Home = () => {
     const newUploadedFiles = uploadedFiles.filter((_, i) => i !== index)
     setUploadedFiles(newUploadedFiles)
   }
-
+  const mockPDFList = [
+    {
+      title: "2023_03_07 - MEV Chevrolet Tracker MY24.pdf ",
+      status: 0,
+    },
+    {
+      title: "LP Jeep Nacional Commander  - Dez 22.pdf ",
+      status: 0,
+    },
+    {
+      title: "LP Jeep Nacional Commander 1  - Dez 22.pdf ",
+      status: 0,
+    },
+  ]
   return (
     <Container>
       <Content>
         {processingPage ? (
-          <>
-            <p>Página de Processamento</p>
-            <Button
-              text={t("fileUpload.buttons.cancel")}
-              color="red"
-              onClick={() => setProcessingPage((prev) => !prev)}
-            />
-          </>
+          <ProcessingPage
+            pdfList={mockPDFList}
+            setProcessingPage={setProcessingPage}
+          />
         ) : (
           <>
             <HeaderTitle variant="h6">{t("fileUpload.title")}</HeaderTitle>

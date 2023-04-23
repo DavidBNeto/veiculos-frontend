@@ -5,9 +5,16 @@ type ButtonProps = {
   color: "blue" | "red"
   onClick: () => void
   disabled?: boolean
+  width?: string
 }
 
-const Button = ({ text, color, onClick, disabled }: ButtonProps) => {
+const Button = ({
+  text,
+  color,
+  onClick,
+  disabled,
+  width = "85%",
+}: ButtonProps) => {
   const background = color === "blue" ? "primary" : "error"
 
   return (
@@ -15,7 +22,7 @@ const Button = ({ text, color, onClick, disabled }: ButtonProps) => {
       color={background}
       variant="contained"
       onClick={onClick}
-      style={{ textTransform: "uppercase", padding: "15px", width: "85%" }}
+      style={{ textTransform: "uppercase", padding: "15px", width }}
       disabled={disabled || false}
     >
       {text}
