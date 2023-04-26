@@ -14,6 +14,7 @@ import {
   SendButton,
 } from "./styles"
 import GlobalStyle from "../../styles/styles"
+import Dropdown from "../../components/Dropdown"
 
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
@@ -85,7 +86,7 @@ const Home = () => {
                           status="downloaded"
                           handleDeleteClick={() => handleDeleteClick(index)}
                         />
-                        <p>Dropdown aqui</p>
+                        <Dropdown />
                       </FilesRow>
                     )
                   })}

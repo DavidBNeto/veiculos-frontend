@@ -14,6 +14,11 @@
       "title": "Arraste e solte ou ",
       "titleURL": "Selecione o arquivo",
       "warning": "O formato .pdf é obrigatório"
+    },
+    "pdfType": {
+      "jeep": "Jeep",
+      "chev": "Chevrolet (GM)",
+      "others": "Outras"
     }
   },
   "extraction": {
