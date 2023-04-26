@@ -7,12 +7,11 @@ import Button from "../../components/Button"
 import {
   Container,
   Content,
-  FilesRow,
-  FilesWrapper,
   HeaderTitle,
-  SelectedFiles,
-  SendButton,
   SubTitle,
+  FilesWrapper,
+  FilesRow,
+  SendButton,
 } from "./styles"
 import GlobalStyle from "../../styles/styles"
 import Dropdown, { CarManufacturer } from "../../components/Dropdown"
@@ -88,24 +87,22 @@ const Home = () => {
             {uploadedFiles.length > 0 && (
               <>
                 <SubTitle>{t("fileUpload.selectedPdfs")}</SubTitle>
-                <SelectedFiles>
-                  <FilesWrapper>
-                    {uploadedFiles.map((file, index) => {
-                      return (
-                        <FilesRow key={file.name + file.size + file.type}>
-                          <FileLoading
-                            fileName={file.name}
-                            status="downloaded"
-                            handleDeleteClick={() => handleDeleteClick(index)}
-                          />
-                          <Dropdown
+                <FilesWrapper>
+                  {uploadedFiles.map((file, index) => {
+                    return (
+                      <FilesRow key={file.name + file.size + file.type}>
+                        <FileLoading
+                          fileName={file.name}
+                          status="downloaded"
+                          handleDeleteClick={() => handleDeleteClick(index)}
+                        />
+                        <Dropdown
                             defaultValue={checkCarManufacturer(file.name)}
                           />
-                        </FilesRow>
-                      )
-                    })}
-                  </FilesWrapper>
-                </SelectedFiles>
+                      </FilesRow>
+                    )
+                  })}
+                </FilesWrapper>
 
                 <SendButton>
                   <Button

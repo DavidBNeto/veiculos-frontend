@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { AiOutlineCloudUpload } from "react-icons/ai"
+import FileUploadIcon from "@mui/icons-material/FileUpload"
 import Typography from "@mui/material/Typography"
 import {
   background,
@@ -60,9 +60,12 @@ export const BoxAreaSubtitle = styled(Typography)`
   color: ${darkGray};
 `
 
-export const UploadIcon = styled(AiOutlineCloudUpload)`
-  display: flex;
-  height: 100%;
-  width: 7rem;
+export const UploadIcon = styled(FileUploadIcon)`
+  height: 6rem !important;
+  width: 6rem !important;
   color: ${link};
+
+  @media screen and (max-height: 400px) {
+    display: none !important;
+  }
 `

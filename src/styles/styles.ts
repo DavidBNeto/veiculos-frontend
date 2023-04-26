@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components"
-import { background } from "./colors"
+import { background, gray, lightGray, darkGray } from "./colors"
 
 export default createGlobalStyle`
   * {
@@ -18,5 +18,24 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+
+    &-track, &-thumb {
+      border-radius: 1rem;
+    }
+
+    &-track {
+      background: ${lightGray};
+    }
+
+    &-thumb {
+      background: ${gray};
+      &:hover {
+        background: ${darkGray};
+      }
+    }
   }
 `

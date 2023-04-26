@@ -12,9 +12,6 @@ import {
 const borderRadius = "6.18px"
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-
   position: relative;
 
   gap: 50px;
