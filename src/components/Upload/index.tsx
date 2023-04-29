@@ -7,14 +7,15 @@ import {
   BoxAreaTitle,
   UploadIcon,
 } from "./styles"
+import Arquivo from "../Arquivo"
 
 interface UploadProps {
   size: boolean
-  uploadedFiles: File[]
-  setUploadedFiles: React.Dispatch<React.SetStateAction<File[]>>
+  uploadedFiles: Arquivo[]
+  addFile: (file: Arquivo) => void
 }
 
-const Upload = ({ size, uploadedFiles, setUploadedFiles }: UploadProps) => {
+const Upload = ({ size, uploadedFiles, addFile }: UploadProps) => {
   const { t } = useTranslation()
 
   const renderDragMessage = (isDragActive: any, isDragReject: any) => {
@@ -47,12 +48,11 @@ const Upload = ({ size, uploadedFiles, setUploadedFiles }: UploadProps) => {
         "application/pdf": [".pdf"],
       }}
       onDropAccepted={(files: File[]) => {
-        // Check for duplicate files
-        files.map((file) => {
-          if (!uploadedFiles.find((item) => item.name === file.name)) {
-            return setUploadedFiles((prev) => [...prev, file])
-          }
-          return null
+        files.forEach((file) => {
+          const fileAlreadyAdded = !!uploadedFiles.find(
+            (item) => item.name === file.name
+          )
+          if (!fileAlreadyAdded) addFile(new Arquivo(file))
         })
       }}
     >
