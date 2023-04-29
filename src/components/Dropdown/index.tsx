@@ -2,16 +2,27 @@ import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import InputLabel from "@mui/material/InputLabel"
 import FormControl from "@mui/material/FormControl"
-import Select, { SelectChangeEvent } from "@mui/material/Select"
+import Select from "@mui/material/Select"
 import { DropdownArea, Item } from "./styles"
 import { lightGray, text } from "../../styles/colors"
 
-const Dropdown = () => {
-  const [carManufacturer, setCarManufacturer] = useState<string>("")
+export enum CarManufacturer {
+  chev = "chev",
+  jeep = "jeep",
+  others = "others",
+}
+
+interface DropdownProps {
+  defaultValue?: CarManufacturer | ""
+  updateManufacturer: () => void
+}
+
+function Dropdown({
+  defaultValue = "",
+  updateManufacturer,
+}: DropdownProps): JSX.Element {
+  const [carManufacturer, setCarManufacturer] = useState<string>(defaultValue)
   const { t } = useTranslation()
-  const handleChange = (event: SelectChangeEvent) => {
-    setCarManufacturer(event.target.value as string)
-  }
 
   return (
     <DropdownArea>
@@ -23,7 +34,10 @@ const Dropdown = () => {
           labelId="select-manufacturer"
           id="select-manufacturer"
           value={carManufacturer}
-          onChange={handleChange}
+          onChange={(event) => {
+            updateManufacturer()
+            setCarManufacturer(event.target.value as CarManufacturer | "")
+          }}
           label={t("fileUpload.selectAssembler")}
           sx={{ background: lightGray, color: text }}
         >
