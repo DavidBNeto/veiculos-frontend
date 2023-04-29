@@ -17,22 +17,20 @@ interface DropdownProps {
   updateManufacturer: () => void
 }
 
-function Dropdown({
+const Dropdown = ({
   defaultValue = "",
   updateManufacturer,
-}: DropdownProps): JSX.Element {
+}: DropdownProps): JSX.Element => {
   const [carManufacturer, setCarManufacturer] = useState<string>(defaultValue)
   const { t } = useTranslation()
 
   return (
     <DropdownArea>
-      <FormControl sx={{ m: 1 }} fullWidth size="small">
-        <InputLabel id="select-manufacturer">
-          {t("fileUpload.selectAssembler")}
-        </InputLabel>
+      <FormControl variant="filled" size="small" fullWidth>
+        <InputLabel id="demo-select-small">Selecione a montadora</InputLabel>
         <Select
-          labelId="select-manufacturer"
-          id="select-manufacturer"
+          labelId="demo-select-small"
+          id="demo-select-small"
           value={carManufacturer}
           onChange={(event) => {
             updateManufacturer()
@@ -41,8 +39,8 @@ function Dropdown({
           label={t("fileUpload.selectAssembler")}
           sx={{ background: lightGray, color: text }}
         >
-          <Item value="jeep">{t("fileUpload.pdfType.jeep")}</Item>
-          <Item value="chev">{t("fileUpload.pdfType.chev")}</Item>
+          <Item value="chev">{t("fileUpload.pdfType.jeep")}</Item>
+          <Item value="jeep">{t("fileUpload.pdfType.chev")}</Item>
           <Item value="others">{t("fileUpload.pdfType.others")}</Item>
         </Select>
       </FormControl>
