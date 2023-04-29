@@ -8,6 +8,7 @@ export type Status =
   | /** When client has downloaded the file */ "downloaded"
   | /** While awaiting for server response */ "uploading"
   | /** When server returned response */ "uploaded"
+  | /** When server returned error */ "failed"
 
 export type FileLoadingProps = {
   /** file name */
@@ -32,4 +33,15 @@ export type DeleteComponentProps = {
 
   /** function to be called when delete button is clicked */
   handleClick: (index: number) => void
+}
+
+export type LoadingIconSpinProps = {
+  /** duration in ms (ex: 1100ms) */
+  animationDuration: string
+
+  /** size of the icon */
+  size: number
+
+  /** width of the icon */
+  thickness: number
 }

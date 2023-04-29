@@ -7,25 +7,30 @@ import {
   DeleteComponentProps,
   FileLoadingProps,
   LoadingIconBarProps,
+  LoadingIconSpinProps,
 } from "./types"
 import { Wrapper, Title, DeleteButton } from "./styles"
 import { blue } from "../../styles/colors"
 
 // Infinitely spinning progress for file download
-const LoadingIconSpin = () => (
+export const LoadingIconSpin = ({
+  animationDuration = "1100ms",
+  size = 30,
+  thickness = 4,
+}: Partial<LoadingIconSpinProps>) => (
   <CircularProgress
     // indeterminate = scrolls indefinetly
     variant="indeterminate"
     sx={{
       color: { blue },
-      animationDuration: "1100ms",
+      animationDuration,
       [`& .${circularProgressClasses.circle}`]: {
         // Define if edges of the spinner are rounded or not
         strokeLinecap: "round",
       },
     }}
-    size={30}
-    thickness={4}
+    size={size}
+    thickness={thickness}
   />
 )
 

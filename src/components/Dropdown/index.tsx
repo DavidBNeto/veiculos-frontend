@@ -1,39 +1,43 @@
-import { useState } from "react"
-import { useTranslation } from "react-i18next"
-import InputLabel from "@mui/material/InputLabel"
-import FormControl from "@mui/material/FormControl"
-import Select, { SelectChangeEvent } from "@mui/material/Select"
-import { DropdownArea, Item } from "./styles"
-import { lightGray, text } from "../../styles/colors"
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core"
+import React from "react"
+import { DropdownArea } from "./styles"
 
-const Dropdown = () => {
-  const [carManufacturer, setCarManufacturer] = useState<string>("")
-  const { t } = useTranslation()
-  const handleChange = (event: SelectChangeEvent) => {
-    setCarManufacturer(event.target.value as string)
-  }
+export enum CarManufacturer {
+  chev = "chev",
+  jeep = "jeep",
+  others = "others",
+}
+
+interface DropdownProps {
+  defaultValue?: CarManufacturer | ""
+  updateManufacturer: () => void
+}
+
+export default function Dropdown({
+  defaultValue = "",
+  updateManufacturer,
+}: DropdownProps): JSX.Element {
+  const [carManufacturer, setCarManufacturer] = React.useState(defaultValue)
 
   return (
     <DropdownArea>
-      <FormControl sx={{ m: 1 }} fullWidth size="small">
-        <InputLabel id="select-manufacturer">
-          {t("fileUpload.selectAssembler")}
-        </InputLabel>
+      <FormControl variant="filled" size="small" fullWidth>
+        <InputLabel id="demo-select-small">Selecione a montadora</InputLabel>
         <Select
-          labelId="select-manufacturer"
-          id="select-manufacturer"
+          labelId="demo-select-small"
+          id="demo-select-small"
           value={carManufacturer}
-          onChange={handleChange}
-          label={t("fileUpload.selectAssembler")}
-          sx={{ background: lightGray, color: text }}
+          label="Selecone a montadora"
+          onChange={(event) => {
+            updateManufacturer()
+            setCarManufacturer(event.target.value as CarManufacturer | "")
+          }}
         >
-          <Item value="jeep">{t("fileUpload.pdfType.jeep")}</Item>
-          <Item value="chev">{t("fileUpload.pdfType.chev")}</Item>
-          <Item value="others">{t("fileUpload.pdfType.others")}</Item>
+          <MenuItem value="chev">Chevrolet (GM) </MenuItem>
+          <MenuItem value="jeep">Jeep</MenuItem>
+          <MenuItem value="others">Outra</MenuItem>
         </Select>
       </FormControl>
     </DropdownArea>
   )
 }
-
-export default Dropdown

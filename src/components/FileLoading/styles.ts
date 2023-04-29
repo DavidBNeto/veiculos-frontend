@@ -29,6 +29,11 @@ export const Wrapper = styled.div`
     border-radius: ${borderRadius};
   }
 
+  &[data-status="failed"] {
+    border: 2.325px solid ${red};
+    border-radius: ${borderRadius};
+  }
+
   .loading-icon-bar > span {
     position: absolute;
 
