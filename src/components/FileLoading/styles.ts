@@ -26,7 +26,10 @@ export const Wrapper = styled.div`
 
   &[data-status="uploaded"] {
     border: 2.325px solid ${green};
-    border-radius: ${borderRadius};
+  }
+
+  &[data-status="failed"] {
+    border: 2.325px solid ${red};
   }
 
   .loading-icon-bar > span {

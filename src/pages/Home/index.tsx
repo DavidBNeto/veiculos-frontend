@@ -1,83 +1,72 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { usePost } from "../../hooks/useApiCall"
+import { Link } from "react-router-dom"
 import Upload from "../../components/Upload"
 import FileLoading from "../../components/FileLoading"
 import Button from "../../components/Button"
-import {
+import Dropdown from "../../components/Dropdown"
+import usePost from "../../hooks/usePost"
+import { SubTitle, FilesWrapper, FilesRow, SendButton } from "./styles"
+import GlobalStyle, {
   Container,
   Content,
   HeaderTitle,
-  SubTitle,
-  FilesWrapper,
-  FilesRow,
-  SendButton,
-} from "./styles"
-import GlobalStyle from "../../styles/styles"
-import ProcessingPage from "../ProcessingPage"
+} from "../../styles/styles"
+
+import ProcessingPage, { Pdf, PdfList } from "../ProcessingPage"
 
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
-  const [processingPage, setProcessingPage] = useState(true)
-  const [startUpload, setStartUpload] = useState(false)
-  const [uploadComplete, setUploadComplete] = useState(true)
+  const [processingPage, setProcessingPage] = useState(false)
+  // const [startUpload, setStartUpload] = useState(false)
+  // const [uploadComplete, setUploadComplete] = useState(true)
+  const [fileList, setFileList] = useState<PdfList>({
+    status: false,
+    files: [],
+  })
   const { t } = useTranslation()
 
-  const { loading, refresh, result, statusCode } = usePost({
-    method: "POST",
-    start: startUpload,
-    data: uploadedFiles,
-  })
+  const { post } = usePost() // error
 
-  // eslint-disable-next-line no-console
-  console.log(
-    loading,
-    refresh,
-    result,
-    statusCode,
-    setUploadedFiles,
-    setUploadComplete
-  )
-
-  const processUpload = () => {
-    // TODO: Check if file has something like "chevrolet", "jeep" and send it's type in body of the request
-
-    setStartUpload(true)
+  const processUpload = useCallback(() => {
+    const response: Pdf[] = []
+    uploadedFiles.forEach(async (file: any) => {
+      const formData = new FormData()
+      formData.append("file", file)
+      await post(formData)
+      /*  response.push({
+        title: "2023_03_07 - MEV Chevrolet Tracker MY24.pdf",
+      })
+      */
+      response.push({
+        title: file.path,
+      })
+      // console.log("file: ", file.path)
+    })
+    // console.log("response: ", response)
+    setFileList({ status: false, files: response })
     setProcessingPage(true)
-  }
-
-  // eslint-disable-next-line no-console
-  console.log(processUpload)
+    // navigate("/process", { state: { requests } })
+  }, [post, uploadedFiles])
 
   const handleDeleteClick = (index: number) => {
     const newUploadedFiles = uploadedFiles.filter((_, i) => i !== index)
     setUploadedFiles(newUploadedFiles)
   }
-  const mockPDFList = [
-    {
-      title: "2023_03_07 - MEV Chevrolet Tracker MY24.pdf ",
-      status: 0,
-    },
-    {
-      title: "LP Jeep Nacional Commander  - Dez 22.pdf ",
-      status: 0,
-    },
-    {
-      title: "LP Jeep Nacional Commander 1  - Dez 22.pdf ",
-      status: 0,
-    },
-  ]
+
   return (
     <Container>
       <Content>
         {processingPage ? (
           <ProcessingPage
-            pdfList={mockPDFList}
+            pdfList={fileList}
             setProcessingPage={setProcessingPage}
           />
         ) : (
           <>
-            <HeaderTitle variant="h6">{t("fileUpload.title")}</HeaderTitle>
+            <Link to="/view">
+              <HeaderTitle variant="h6">{t("fileUpload.title")}</HeaderTitle>
+            </Link>
             <Upload
               size={uploadedFiles.length > 0}
               uploadedFiles={uploadedFiles}
@@ -95,20 +84,17 @@ const Home = () => {
                           status="downloaded"
                           handleDeleteClick={() => handleDeleteClick(index)}
                         />
-                        <p>Dropdown aqui</p>
+                        <Dropdown />
                       </FilesRow>
                     )
                   })}
                 </FilesWrapper>
-
                 <SendButton>
                   <Button
                     text={t("fileUpload.buttons.send")}
                     color="blue"
-                    onClick={() => setProcessingPage((prev) => !prev)}
-                    disabled={
-                      !uploadComplete || loading || uploadedFiles.length === 0
-                    }
+                    onClick={() => processUpload()}
+                    disabled={uploadedFiles.length === 0}
                   />
                 </SendButton>
               </>

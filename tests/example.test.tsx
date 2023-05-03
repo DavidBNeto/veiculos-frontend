@@ -1,10 +1,15 @@
 import React from "react"
+import { BrowserRouter } from "react-router-dom"
 import Home from "../src/pages/Home"
 import { render } from "@testing-library/react"
 
 describe("<Home />", () => {
   test("should render the home page", () => {
-    render(<Home />)
+    render(
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    )
   })
 })
 

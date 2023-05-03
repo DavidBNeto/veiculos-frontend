@@ -7,10 +7,16 @@ const NotFound = () => {
 
   return (
     <Content>
-      <NotFoundText variant="h1">{t("notFound.title")}</NotFoundText>
-      <NotFoundText variant="h6">{t("notFound.subtitle")}</NotFoundText>
+      <NotFoundText variant="h1" data-testid="not-found-title">
+        {t("notFound.title")}
+      </NotFoundText>
+      <NotFoundText variant="h6" data-testid="not-found-subtitle">
+        {t("notFound.subtitle")}
+      </NotFoundText>
       <LinkClean to="/">
-        <Button variant="contained">{t("notFound.button")}</Button>
+        <Button variant="contained" data-testid="not-found-button">
+          {t("notFound.button")}
+        </Button>
       </LinkClean>
     </Content>
   )

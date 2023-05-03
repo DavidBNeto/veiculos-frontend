@@ -24,6 +24,7 @@ const Button = ({
       onClick={onClick}
       style={{ textTransform: "uppercase", padding: "15px", width }}
       disabled={disabled || false}
+      data-testid="custom-button"
     >
       {text}
     </Btn>

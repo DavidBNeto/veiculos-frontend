@@ -20,5 +20,23 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./tests/setup.ts"],
+    coverage: {
+      provider: "c8",
+      include: ["src/**/*"],
+      exclude: [
+        "src/components/**/types.ts",
+        "src/pages/**/types.ts",
+        "src/globals.d.ts",
+        "src/vite-env.d.ts",
+        "src/assets/**/*",
+        "src/index.tsx",
+      ],
+      reporter: ["text", "json", "html"],
+      all: true,
+      lines: 79,
+      functions: 79,
+      branches: 79,
+      statements: 79,
+    },
   },
 })

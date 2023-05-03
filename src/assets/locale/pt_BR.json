@@ -14,13 +14,19 @@
       "title": "Arraste e solte ou ",
       "titleURL": "Selecione o arquivo",
       "warning": "O formato .pdf é obrigatório"
+    },
+    "pdfType": {
+      "jeep": "Jeep",
+      "chev": "Chevrolet (GM)",
+      "others": "Outras"
     }
   },
   "extraction": {
-    "title": "Fazendo a extração de dados...",
     "subtitle": "Isso pode levar de 2 a 5 minutos",
     "success": "Extração concluída!",
-    "redirect": "Visualizar conteúdo"
+    "redirect": "Visualizar conteúdo",
+    "extracting": "Fazendo a extração de dados...",
+    "fail": "Erro na extração!"
   },
   "notFound": {
     "title": "404",

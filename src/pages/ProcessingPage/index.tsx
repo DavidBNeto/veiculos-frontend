@@ -1,9 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react"
 import { useTranslation } from "react-i18next"
-import LinearProgress, {
-  LinearProgressProps,
-} from "@mui/material/LinearProgress"
 import Button from "../../components/Button"
 import {
   ButtonWrapper,
@@ -21,42 +18,33 @@ import {
 } from "./styles"
 import { LinkClean } from "../NotFound/styles"
 
-interface Pdf {
+export interface Pdf {
   title: string
-  status: number
+}
+
+export interface PdfList {
+  status: boolean
+  files: Pdf[]
 }
 interface ProcessingPageProps {
   setProcessingPage: any
-  pdfList: Pdf[]
-  props?: LinearProgressProps & { value: number }
+  pdfList: PdfList
 }
 
 const ProcessingPage = ({
   setProcessingPage,
   pdfList,
-  props,
 }: ProcessingPageProps) => {
   const { t } = useTranslation()
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      pdfList.map((prevProgress) =>
-        prevProgress.status >= 100 ? 10 : prevProgress.status + 10
-      )
-    }, 1000)
-    return () => {
-      clearInterval(timer)
-    }
-  }, [pdfList])
 
   return (
     <Container>
       <Section>
         <LoadingWrapper>
-          {pdfList.filter((pdf) => pdf.status < 100).length > 0 ? (
+          {!pdfList.status ? (
             <>
               <Loading />
-              <Title>{t("extraction.title")}</Title>
+              <Title>{t("extraction.extracting")}</Title>
               <Subtitle>{t("extraction.subtitle")}</Subtitle>
             </>
           ) : (
@@ -69,22 +57,13 @@ const ProcessingPage = ({
       </Section>
       <Section>
         <SectionTitle>PDFs selecionados</SectionTitle>
-        {pdfList.map((pdf) => (
+        {pdfList.files.map((pdf) => (
           <PdfStatus key={pdf.title}>
             <PdfTitle>{pdf.title}</PdfTitle>
-            {pdf.status < 100 ? (
-              <LinearProgress
-                variant="determinate"
-                value={pdf.status}
-                {...props}
-              />
-            ) : (
-              ""
-            )}
           </PdfStatus>
         ))}
         <ButtonWrapper>
-          {pdfList.filter((pdf) => pdf.status < 100).length > 0 ? (
+          {!pdfList.status ? (
             <Button
               text={t("fileUpload.buttons.cancel")}
               color="red"

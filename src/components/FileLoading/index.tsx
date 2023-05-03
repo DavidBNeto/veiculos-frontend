@@ -7,25 +7,30 @@ import {
   DeleteComponentProps,
   FileLoadingProps,
   LoadingIconBarProps,
+  LoadingIconSpinProps,
 } from "./types"
 import { Wrapper, Title, DeleteButton } from "./styles"
 import { blue } from "../../styles/colors"
 
 // Infinitely spinning progress for file download
-const LoadingIconSpin = () => (
+export const LoadingIconSpin = ({
+  animationDuration = "1100ms",
+  size = 30,
+  thickness = 4,
+}: Partial<LoadingIconSpinProps>) => (
   <CircularProgress
     // indeterminate = scrolls indefinetly
     variant="indeterminate"
     sx={{
       color: { blue },
-      animationDuration: "1100ms",
+      animationDuration,
       [`& .${circularProgressClasses.circle}`]: {
         // Define if edges of the spinner are rounded or not
         strokeLinecap: "round",
       },
     }}
-    size={30}
-    thickness={4}
+    size={size}
+    thickness={thickness}
   />
 )
 
@@ -41,7 +46,7 @@ const LoadingIconBar = ({ isLoaded }: LoadingIconBarProps) => {
 }
 
 const DeleteComponent = ({ index, handleClick }: DeleteComponentProps) => (
-  <DeleteButton onClick={() => handleClick(index)}>
+  <DeleteButton data-testid="delete-button" onClick={() => handleClick(index)}>
     <DeleteIcon />
   </DeleteButton>
 )
@@ -58,8 +63,10 @@ const FileLoading = ({
   const isBar = status === "uploading"
 
   return (
-    <Wrapper data-status={status}>
-      <Title variant="h2">{fileName}</Title>
+    <Wrapper data-status={status} data-testid={status}>
+      <Title variant="h2" data-testid="file-name">
+        {fileName}
+      </Title>
       {isSpin && <LoadingIconSpin />}
       {isDeletable && (
         <DeleteComponent index={index} handleClick={handleDeleteClick} />
