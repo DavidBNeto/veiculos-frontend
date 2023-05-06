@@ -29,11 +29,13 @@ export interface PdfList {
 interface ProcessingPageProps {
   setProcessingPage: any
   pdfList: PdfList
+  uploadComplete: boolean
 }
 
 const ProcessingPage = ({
   setProcessingPage,
   pdfList,
+  uploadComplete,
 }: ProcessingPageProps) => {
   const { t } = useTranslation()
 
@@ -41,7 +43,7 @@ const ProcessingPage = ({
     <Container>
       <Section>
         <LoadingWrapper>
-          {!pdfList.status ? (
+          {!uploadComplete ? (
             <>
               <Loading />
               <Title>{t("extraction.extracting")}</Title>
@@ -63,7 +65,7 @@ const ProcessingPage = ({
           </PdfStatus>
         ))}
         <ButtonWrapper>
-          {!pdfList.status ? (
+          {!uploadComplete ? (
             <Button
               text={t("fileUpload.buttons.cancel")}
               color="red"

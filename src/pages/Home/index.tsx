@@ -18,36 +18,35 @@ import ProcessingPage, { Pdf, PdfList } from "../ProcessingPage"
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
   const [processingPage, setProcessingPage] = useState(false)
-  // const [startUpload, setStartUpload] = useState(false)
-  // const [uploadComplete, setUploadComplete] = useState(true)
+  const [carManufacturer, setCarManufacturer] = useState("")
+  const [uploadComplete, setUploadComplete] = useState(false)
   const [fileList, setFileList] = useState<PdfList>({
     status: false,
     files: [],
   })
   const { t } = useTranslation()
 
-  const { post } = usePost() // error
+  const { post } = usePost()
 
   const processUpload = useCallback(() => {
+    setUploadComplete(false)
     const response: Pdf[] = []
+    setProcessingPage(true)
+
     uploadedFiles.forEach(async (file: any) => {
-      const formData = new FormData()
-      formData.append("file", file)
-      await post(formData)
-      /*  response.push({
-        title: "2023_03_07 - MEV Chevrolet Tracker MY24.pdf",
-      })
-      */
       response.push({
         title: file.path,
       })
-      // console.log("file: ", file.path)
+      const formData = new FormData()
+      formData.append("file", file)
+      formData.append("montadora", carManufacturer)
+
+      await post(formData).then(() => {
+        setUploadComplete(true)
+      })
     })
-    // console.log("response: ", response)
     setFileList({ status: false, files: response })
-    setProcessingPage(true)
-    // navigate("/process", { state: { requests } })
-  }, [post, uploadedFiles])
+  }, [carManufacturer, post, uploadedFiles])
 
   const handleDeleteClick = (index: number) => {
     const newUploadedFiles = uploadedFiles.filter((_, i) => i !== index)
@@ -61,6 +60,7 @@ const Home = () => {
           <ProcessingPage
             pdfList={fileList}
             setProcessingPage={setProcessingPage}
+            uploadComplete={uploadComplete}
           />
         ) : (
           <>
@@ -84,7 +84,10 @@ const Home = () => {
                           status="downloaded"
                           handleDeleteClick={() => handleDeleteClick(index)}
                         />
-                        <Dropdown />
+                        <Dropdown
+                          carManufacturer={carManufacturer}
+                          setCarManufacturer={setCarManufacturer}
+                        />
                       </FilesRow>
                     )
                   })}
