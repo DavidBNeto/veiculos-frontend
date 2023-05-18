@@ -11,25 +11,24 @@ const PageWrapper = styled.div`
 
   padding: 4rem 6rem;
 
-  div:first-of-type {
+  > div:first-of-type {
     min-width: 450px;
-    outline: 2px solid red;
   }
 
-  div:last-of-type {
+  > div:last-of-type {
     flex: 1;
     min-width: 650px;
     outline: 2px solid green;
   }
 
   @media screen and (max-width: 1308px) {
-    div:first-of-type {
+    > div:first-of-type {
       width: 100%;
     }
   }
 
   @media screen and (max-width: 800px) {
-    div {
+    > div {
       display: none;
     }
 
