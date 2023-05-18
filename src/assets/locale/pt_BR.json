@@ -30,5 +30,13 @@
     "title": "404",
     "subtitle": "A página que você está procurando não existe",
     "button": "Voltar para a tela principal"
+  },
+  "viewPDF": {
+    "pdfList": {
+      "title": "Selecione o PDF para visualizá-lo",
+      "openEditors": "Editores abertos",
+      "incompleteFiles": "Arquivos incompletos",
+      "completeFiles": "Arquivos completos"
+    }
   }
 }
