@@ -13,7 +13,6 @@ const PageWrapper = styled.div`
 
   > div:first-of-type {
     min-width: 450px;
-    outline: 2px solid red;
   }
 
   > div:last-of-type {
