@@ -1,4 +1,5 @@
 import TabsView from "../../components/TabsView"
+import InputData from "../../components/InputData"
 
 const mockPDFList = [
   {
@@ -36,6 +37,7 @@ const ViewPdf = () => {
     <div>
       View PDF
       <TabsView pdfList={mockPDFList} />
+      <InputData></InputData>
     </div>
   )
 }
