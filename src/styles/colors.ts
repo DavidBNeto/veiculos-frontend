@@ -13,4 +13,5 @@ export const link = "#141bc3"
 export const defaultMessage = "#1450c31a"
 export const errorMessage = "#e57878"
 export const successMessage = "#b6eaa1"
+
 export const mediumGray = "#2C2C2C"
