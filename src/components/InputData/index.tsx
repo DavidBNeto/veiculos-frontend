@@ -1,50 +1,58 @@
-import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import { green, grey, blue } from '@mui/material/colors';
+import { useState } from "react"
+import TextField from "@mui/material/TextField"
+import { blue } from "@mui/material/colors"
+import { InputAdornment } from "@mui/material"
 
-function InputComponent() {
-  const [value, setValue] = useState('');
-  const [copied, setCopied] = useState(false);
-  const [clicked, setClicked] = useState(false);
+type InputProps = {
+  data?: string
+}
+
+function InputComponent({ data }: InputProps) {
+  const [value, setValue] = useState("")
+  const [copied, setCopied] = useState(false)
+  const [clicked, setClicked] = useState(false)
 
   const handleCopyClick = () => {
-    navigator.clipboard.writeText(value);
-    setCopied(true);
-    setClicked(true);
-  };
+    navigator.clipboard.writeText(value)
+    setCopied(true)
+    setClicked(true)
+  }
 
   const handleInputFocus = () => {
-    setClicked(false);
-  };
+    setClicked(false)
+  }
 
   return (
     <div>
       <TextField
         type="text"
-        value={value}
+        value={data}
         inputMode="text"
         onChange={(event) => setValue(event.target.value)}
         InputProps={{
           style: {
-            backgroundColor: clicked ? blue[50] : 'transparent',
+            backgroundColor: clicked ? blue[50] : "transparent",
           },
           onFocus: handleInputFocus,
           endAdornment: (
-            <img
-              src="src\assets\CopyInput.png" // caminho da sua imagem
-              alt="Copiar"
-              onClick={handleCopyClick}
-              style={{
-                cursor: 'pointer',
-                marginLeft: '8px',
-              }}
-            />
+            <InputAdornment position="end">
+              <img
+                src="src\assets\CopyInput.png"
+                alt="Copiar"
+                onClick={handleCopyClick}
+                style={{
+                  cursor: "pointer",
+                  marginLeft: "8px",
+                  width: "30px",
+                }}
+              />
+            </InputAdornment>
           ),
         }}
       />
       {copied}
     </div>
-  );
+  )
 }
 
-export default InputComponent;
+export default InputComponent
