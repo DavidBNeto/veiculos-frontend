@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { green, grey } from '@mui/material/colors';
+import { green, grey, blue } from '@mui/material/colors';
 
 function InputComponent() {
   const [value, setValue] = useState('');
   const [copied, setCopied] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(value);
     setCopied(true);
+    setClicked(true);
+  };
+
+  const handleInputFocus = () => {
+    setClicked(false);
   };
 
   return (
@@ -17,16 +22,27 @@ function InputComponent() {
       <TextField
         type="text"
         value={value}
-        inputMode="text" // Permitir entrada de números e letras
+        inputMode="text"
         onChange={(event) => setValue(event.target.value)}
         InputProps={{
           style: {
-            borderColor: copied ? green[500] : grey[500],
+            backgroundColor: clicked ? blue[50] : 'transparent',
           },
+          onFocus: handleInputFocus,
+          endAdornment: (
+            <img
+              src="src\assets\CopyInput.png" // caminho da sua imagem
+              alt="Copiar"
+              onClick={handleCopyClick}
+              style={{
+                cursor: 'pointer',
+                marginLeft: '8px',
+              }}
+            />
+          ),
         }}
       />
-      <Button onClick={handleCopyClick}>Copiar</Button>
-      {copied && <span>Valor copiado!</span>}
+      {copied}
     </div>
   );
 }
