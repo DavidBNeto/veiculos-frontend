@@ -1,4 +1,4 @@
-import Wrapper from "./styles"
+import { Wrapper, Title, TitleButton } from "./styles"
 
 interface PDFGroupProps {
   title: string
@@ -8,12 +8,12 @@ interface PDFGroupProps {
 const PDFGroup = ({ title, PDFs }: PDFGroupProps) => {
   return (
     <Wrapper>
-      <button type="button">
-        {title} <span>v</span>
-      </button>
+      <TitleButton type="button">
+        <Title variant="h2">{title}</Title> <span>v</span>
+      </TitleButton>
       {PDFs.map((PDF) => (
         <div
-          key={PDF}
+          key={PDF + Math.random()}
           style={{
             width: "100%",
             height: "50px",
