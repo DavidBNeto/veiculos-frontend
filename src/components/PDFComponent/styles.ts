@@ -40,18 +40,18 @@ export const Title = styled(Typography)`
   white-space: nowrap;
 `
 export const Icone = styled.div`
-font-size: 18.55px !important;
-line-height: 27.8px !important;
-position: absolute;
-top: -10px;
-left -10px;
+  font-size: 18.55px !important;
+  line-height: 27.8px !important;
+  position: absolute;
+  top: -10px;
+  left -10px;
 
-> svg {
-  transition: 450ms;
-}
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+  > svg {
+    transition: 450ms;
+  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 export const ConcludedComponentWrapper = styled(Icone)`
   > svg {

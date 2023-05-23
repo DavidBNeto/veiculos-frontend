@@ -13,7 +13,6 @@ import GlobalStyle, {
   HeaderTitle,
   FilesWrapper,
 } from "../../styles/styles"
-import PDFComponent from "../../components/PDFComponent"
 
 const Home = () => {
   const [uploadedFiles, setUploadedFiles] = useState<PdfFile[]>([])
@@ -77,20 +76,6 @@ const Home = () => {
                         status="downloaded"
                         handleDeleteClick={() => handleDeleteClick(index)}
                       />
-                      <br />
-                      <FileLoading
-                        fileName={file.pdf.name}
-                        status="downloaded"
-                        handleDeleteClick={() => handleDeleteClick(index)}
-                      />
-                      <br />
-                      <br />
-                      <PDFComponent
-                        fileName={file.pdf.name}
-                        status="unfinished"
-                        isSelected={false}
-                      />
-                      <br />
                       <Dropdown
                         fileName={file.pdf.name}
                         index={index}
