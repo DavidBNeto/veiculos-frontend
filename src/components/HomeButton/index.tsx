@@ -32,7 +32,7 @@ interface HomeButtonProps {
 }
 
 const HomeButton = ({ onClick }: HomeButtonProps) => (
-  <Button onClick={onClick}>
+  <Button onClick={onClick} data-testid="home-button">
     <HomeIcon />
   </Button>
 )
