@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom"
 import Button from "./styles"
 
 const HomeIcon = () => (
@@ -28,13 +27,14 @@ const HomeIcon = () => (
   </svg>
 )
 
-const HomeButton = () => {
-  const navigate = useNavigate()
-  return (
-    <Button onClick={() => navigate("/")}>
-      <HomeIcon />
-    </Button>
-  )
+interface HomeButtonProps {
+  onClick: () => void
 }
+
+const HomeButton = ({ onClick }: HomeButtonProps) => (
+  <Button onClick={onClick}>
+    <HomeIcon />
+  </Button>
+)
 
 export default HomeButton
