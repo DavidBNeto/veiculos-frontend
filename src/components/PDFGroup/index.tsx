@@ -7,6 +7,7 @@ import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from "@mui/material/AccordionSummary"
 import { Title, AccordionDetails } from "./styles"
+import { PDF } from "../PDFList/types"
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion elevation={0} {...props} />
@@ -31,11 +32,24 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 
 interface PDFGroupProps {
   title: string
-  PDFs: string[]
+  PDFs: PDF[]
   defaultExpanded?: true
+  /** Should move PDFs state to 'active' and to open editors tab */
+  onPDFclick: (PDF: PDF) => void
+  /** Should move PDF to complete files tab
+   * implemented by save button
+   */
+  // TODO: implement
+  // onPDFchange?: (PDF: PDF) => void
 }
 
-const PDFGroup = ({ title, PDFs, defaultExpanded }: PDFGroupProps) => {
+const PDFGroup = ({
+  title,
+  PDFs,
+  defaultExpanded,
+  onPDFclick,
+}: // , onPDFchange
+PDFGroupProps) => {
   const { t } = useTranslation()
   const [isExpanded, setIsExpanded] = useState<boolean>(!!defaultExpanded)
 
@@ -62,16 +76,20 @@ const PDFGroup = ({ title, PDFs, defaultExpanded }: PDFGroupProps) => {
         {!PDFs || PDFs.length === 0 ? (
           <p>{t("viewPDF.pdfList.noFiles")}</p>
         ) : (
-          PDFs.map((PDF) => (
+          PDFs.map((file) => (
             <div
-              key={PDF + Math.random()}
+              key={file.name}
               style={{
                 width: "100%",
                 height: "50px",
                 border: "1px solid black",
               }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={() => onPDFclick({ ...file, status: "Concluído" })}
+              onClick={() => onPDFclick({ ...file, status: "Concluído" })}
             >
-              {PDF}
+              {file.name}
             </div>
           ))
         )}
