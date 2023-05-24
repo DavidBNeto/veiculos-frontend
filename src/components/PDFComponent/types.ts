@@ -4,4 +4,5 @@ export type PDFComponentProps = {
   fileName: string
   status: Status
   isSelected: boolean
+  lastEditedAt: string
 }

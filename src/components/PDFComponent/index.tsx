@@ -48,11 +48,16 @@ const Icone = ({ status }: { status: Status }) => {
       return <NotOpenComponent />
   }
 }
-const PDFComponent = ({ fileName, status, isSelected }: PDFComponentProps) => {
+const PDFComponent = ({
+  fileName,
+  status,
+  lastEditedAt,
+  isSelected,
+}: PDFComponentProps) => {
   return (
     <Wrapper
       data-status={status}
-      data-updated="Última edição em:"
+      data-updated={`Última edição em: ${lastEditedAt}`}
       data-selected={isSelected}
     >
       <Icone status={status} />

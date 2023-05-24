@@ -44,7 +44,7 @@ export const Icone = styled.div`
   line-height: 27.8px !important;
   position: absolute;
   top: -10px;
-  left -10px;
+  left: -10px;
 
   > svg {
     transition: 450ms;
