@@ -6,6 +6,7 @@ import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from "@mui/material/AccordionSummary"
+import { Typography } from "@material-ui/core"
 import { Title, AccordionDetails } from "./styles"
 
 const Accordion = styled((props: AccordionProps) => (
@@ -60,7 +61,7 @@ const PDFGroup = ({ title, PDFs, defaultExpanded }: PDFGroupProps) => {
       </AccordionSummary>
       <AccordionDetails data-testid="pdf-group-body">
         {!PDFs || PDFs.length === 0 ? (
-          <p>{t("viewPDF.pdfList.noFiles")}</p>
+          <Typography>{t("viewPDF.pdfList.noFiles")}</Typography>
         ) : (
           PDFs.map((PDF) => (
             <div
