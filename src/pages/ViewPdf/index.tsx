@@ -2,7 +2,6 @@ import { t } from "i18next"
 import { useNavigate } from "react-router-dom"
 import { PageWrapper, SaveButton } from "./styles"
 import TabsView from "../../components/TabsView"
-import InputData from "../../components/InputData"
 import GlobalStyle from "../../styles/styles"
 import HomeButton from "../../components/HomeButton"
 import PDFList from "../../components/PDFList"
@@ -55,7 +54,6 @@ const ViewPdf = () => {
           {t("view.saveButton")}
         </SaveButton>
         <TabsView pdfList={mockPDFList} />
-        <InputData />
       </div>
       <GlobalStyle />
     </PageWrapper>
