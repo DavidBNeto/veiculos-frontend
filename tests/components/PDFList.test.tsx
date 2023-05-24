@@ -23,12 +23,9 @@ describe("PDF List component", () => {
     },
   ]
   const onClick = (_: PDF) => {}
-  
+
   beforeEach(() => {
-    render(<PDFList
-      PDFs={PDFs}
-      onPDFclick={onClick}
-    />)
+    render(<PDFList PDFs={PDFs} onPDFclick={onClick} />)
   })
 
   test("should render the PDF List component")
