@@ -1,9 +1,10 @@
 import styled from "styled-components"
+import { Button } from "@mui/material"
 import { backgroundBlue } from "../../styles/colors"
 
-const PageWrapper = styled.div`
+export const PageWrapper = styled.div`
   height: 100%;
-
+  position: relative;
   gap: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -13,6 +14,7 @@ const PageWrapper = styled.div`
 
   > div:first-of-type {
     min-width: 450px;
+    outline: 2px solid red;
   }
 
   > div:last-of-type {
@@ -46,4 +48,19 @@ const PageWrapper = styled.div`
   }
 `
 
-export default PageWrapper
+export const SaveButton = styled(Button)`
+  position: absolute !important;
+  top: 70px;
+  right: 105px;
+  width: 100px;
+  height: 45px;
+  outline: 0;
+  border: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  }
+`

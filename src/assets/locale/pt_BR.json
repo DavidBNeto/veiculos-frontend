@@ -31,6 +31,9 @@
     "subtitle": "A página que você está procurando não existe",
     "button": "Voltar para a tela principal"
   },
+  "view": {
+    "saveButton": "Salvar"
+  },
   "viewPDF": {
     "pdfList": {
       "title": "Selecione o PDF para visualizá-lo",
