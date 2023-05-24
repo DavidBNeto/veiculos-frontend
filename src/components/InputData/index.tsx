@@ -2,6 +2,7 @@ import { useState } from "react"
 import TextField from "@mui/material/TextField"
 import { blue } from "@mui/material/colors"
 import { InputAdornment } from "@mui/material"
+import CopyInput from "../../assets/CopyInput.png"
 
 type InputProps = {
   data?: string
@@ -37,7 +38,7 @@ function InputComponent({ data }: InputProps) {
           endAdornment: (
             <InputAdornment position="end">
               <img
-                src="src\assets\CopyInput.png"
+                src={CopyInput}
                 alt="Copiar"
                 onClick={handleCopyClick}
                 style={{
