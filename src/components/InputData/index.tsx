@@ -41,6 +41,7 @@ function InputComponent({ data }: InputProps) {
                 src={CopyInput}
                 alt="Copiar"
                 onClick={handleCopyClick}
+                onKeyDown={handleCopyClick}
                 style={{
                   cursor: "pointer",
                   marginLeft: "8px",
