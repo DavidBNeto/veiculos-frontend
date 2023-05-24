@@ -10,6 +10,7 @@ const PDFList = () => {
       <PDFGroup
         title={t("viewPDF.pdfList.openEditors")}
         PDFs={"just some examples with".split(" ")}
+        defaultExpanded
       />
       <PDFGroup
         title={t("viewPDF.pdfList.incompleteFiles")}
@@ -17,7 +18,7 @@ const PDFList = () => {
       />
       <PDFGroup
         title={t("viewPDF.pdfList.completeFiles")}
-        PDFs={", sometimes , that is".split(" ")}
+        PDFs={[]} // ", sometimes , that is".split(" ")}
       />
     </Wrapper>
   )
