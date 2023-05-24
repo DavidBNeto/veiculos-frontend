@@ -37,7 +37,7 @@ const ViewPdf = () => {
     <div>
       View PDF
       <TabsView pdfList={mockPDFList} />
-      <InputData></InputData>
+      <InputData data="1234" />
     </div>
   )
 }
