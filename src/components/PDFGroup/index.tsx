@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { styled } from "@mui/material/styles"
+import { Typography } from "@material-ui/core"
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion"
 import MuiAccordionSummary, {
@@ -74,7 +75,7 @@ PDFGroupProps) => {
       </AccordionSummary>
       <AccordionDetails data-testid="pdf-group-body">
         {!PDFs || PDFs.length === 0 ? (
-          <p>{t("viewPDF.pdfList.noFiles")}</p>
+          <Typography>{t("viewPDF.pdfList.noFiles")}</Typography>
         ) : (
           PDFs.map((file) => (
             <div
