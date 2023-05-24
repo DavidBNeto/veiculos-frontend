@@ -40,6 +40,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "react/require-default-props": "off",
     "react/jsx-no-bind": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "prettier/prettier": [
       "error",
       {
