@@ -39,7 +39,8 @@
       "title": "Selecione o PDF para visualizá-lo",
       "openEditors": "Editores abertos",
       "incompleteFiles": "Arquivos incompletos",
-      "completeFiles": "Arquivos completos"
+      "completeFiles": "Arquivos completos",
+      "noFiles": "Nenhum arquivo encontrado"
     }
   }
 }
